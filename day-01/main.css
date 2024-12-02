@@ -1,0 +1,16 @@
+img {
+  height: 100%;
+  object-fit: cover;
+  border-radius: .375rem;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image__container {
+  display: grid;
+  grid-area: repeat(6, 1fr);
+}
