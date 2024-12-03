@@ -1,16 +1,110 @@
-img {
-  height: 100%;
+img { 
+  max-height: 300px;
+  width: 100%;
   object-fit: cover;
   border-radius: .375rem;
 }
 
-.main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .image__container {
   display: grid;
-  grid-area: repeat(6, 1fr);
+  gap: .75rem;
+}
+
+.image__container:has(div:nth-child(1)) {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+
+  > img {
+    max-height: 616px;
+    height: 100%;
+  }
+}
+
+.image__container:has(div:nth-child(2)) {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  > img {
+    max-height: 616px;
+  }
+}
+
+.image__container:has(div:nth-child(3)) {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  > div:last-child {
+    grid-column: span 2 / span 2;
+  }
+}
+
+.image__container:has(div:nth-child(4)) {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  > div:nth-child(3) {
+    grid-column: span 1 / span 1;
+  }
+
+  > div:last-child {
+    grid-column: span 1 / span 1;
+  }
+}
+
+.image__container:has(div:nth-child(5)) {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+
+  > div:nth-child(1),
+  > div:nth-child(2) {
+    grid-column: span 3 / span 3;
+  }
+
+  > div:nth-child(3),
+  > div:nth-child(4),
+  > div:nth-child(5) {
+    grid-column: span 2 / span 2;
+  }
+}
+
+.image__container:has(div:nth-child(6)) {
+  counter-set: img-count 5;
+  counter-reset: img-count;
+
+  > div:nth-child(5) {
+    background-color: #000000;
+    border-radius: .375rem;
+    max-height: 300px;
+
+    img {
+      opacity: 50%;
+    }
+  }
+
+    /* this displays the counter */
+    > div:nth-child(5)::before {
+      display: block;
+      /* We want to hide the count and only show for the very last photo.
+        we're using visibility instead of display because if you set display to
+        none then it's not included in the count */
+      content: "+" counter(img-count);
+      counter-increment: img-count;
+      font-size: 100px;
+      font-weight: bold;
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      top: 50%;
+      color: white;
+      z-index: 10;
+    }
+
+  > div:nth-child(n + 6) {
+     /* grid-column-start: 5;
+     grid-column: span 2 / span 2;
+     grid-row-start: 2; */
+
+     img {
+       visibility: hidden;
+     }
+  }
+
+  > div {
+    position: relative;
+  }
 }
