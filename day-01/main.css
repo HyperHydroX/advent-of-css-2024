@@ -63,27 +63,94 @@ img {
 }
 
 .image__container:has(div:nth-child(6)) {
-  counter-set: img-count 5;
+  counter-set: img-count -5;
   counter-reset: img-count;
 
   > div:nth-child(5) {
     background-color: #000000;
     border-radius: .375rem;
     max-height: 300px;
+    
+    grid-column-start: 5;
+    grid-column-end: span 2;
+    grid-row-start: 2;
 
     img {
-      opacity: 50%;
+      opacity: .5;
     }
   }
 
-    /* this displays the counter */
-    > div:nth-child(5)::before {
+  > div:nth-child(n + 6) {
+    grid-column-start: 5;
+    grid-column-end: span 2;
+    grid-row-start: 2;
+
+    img {
+      display: none;
+    }
+  }
+
+  > div::before {
+    display: block;
+    visibility: hidden;
+    content: "+" counter(img-count);
+    counter-increment: img-count;
+    font-size: 100px;
+    font-weight: bold;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    color: white;
+    z-index: 10;
+  }
+  
+  > div {
+    position: relative;
+  }
+
+  > div:last-of-type:before {
+    visibility: visible;
+}
+}
+
+/* SOLUTION FOR THE COUNTER */
+/* .image__container:has(div:nth-child(6)) {
+  counter-set: photo-count -5;
+  counter-reset: photo-count;
+
+  > div:nth-child(5) {
+      background-color: black;
+      border-radius: 0.5rem;
+      grid-column-start: 5;
+      grid-column-end: span 2;
+      grid-row-start: 2;
+
+      img {
+          opacity: 0.5;
+      }
+  }
+
+  > div:nth-child(n + 6) {
+      grid-column-start: 5;
+      grid-column-end: span 2;
+      grid-row-start: 2;
+
+      img {
+          display: none;
+      }
+  }
+
+  > div {
+      position: relative;
+      z-index: 10;
+  }
+
+  > div:before {
       display: block;
-      /* We want to hide the count and only show for the very last photo.
-        we're using visibility instead of display because if you set display to
-        none then it's not included in the count */
-      content: "+" counter(img-count);
-      counter-increment: img-count;
+      visibility: hidden;
+      content: "+" counter(photo-count);
+      counter-increment: photo-count;
       font-size: 100px;
       font-weight: bold;
       position: absolute;
@@ -91,20 +158,13 @@ img {
       transform: translate(-50%, -50%);
       top: 50%;
       color: white;
-      z-index: 10;
-    }
-
-  > div:nth-child(n + 6) {
-     /* grid-column-start: 5;
-     grid-column: span 2 / span 2;
-     grid-row-start: 2; */
-
-     img {
-       visibility: hidden;
-     }
+      z-index: 20;
   }
 
-  > div {
-    position: relative;
+  > div:last-of-type:before {
+      visibility: visible;
   }
-}
+} */
+
+
+
