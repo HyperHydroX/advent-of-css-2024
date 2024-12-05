@@ -111,7 +111,7 @@ img {
 
   > div:last-of-type:before {
     visibility: visible;
-}
+  }
 }
 
 /* SOLUTION FOR THE COUNTER */
